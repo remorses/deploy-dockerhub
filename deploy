@@ -1,0 +1,17 @@
+#!/bin/sh
+
+test -f ./VERSION || (echo "file VERSION containing current version is needed" && exit 1)
+
+version=`cat VERSION`
+
+docker build -t $USERNAME/$IMAGE_NAME:latest ./
+
+docker tag $USERNAME/$IMAGE_NAME:latest $USERNAME/$IMAGE_NAME:$version
+
+docker login -u $USERNAME -p $PASSWORD
+
+echo "deploying $USERNAME/$IMAGE_NAME:latest"
+docker push $USERNAME/$IMAGE_NAME:latest
+
+echo "deploying $USERNAME/$IMAGE_NAME:$version"
+docker push $USERNAME/$IMAGE_NAME:$version
