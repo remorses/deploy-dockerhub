@@ -8,13 +8,11 @@ jobs:
         docker:
              - image: xmorse/deploy-dockerhub
         environment:
-             USERNAME: $DOCKERHUB_USERNAME
-             PASSWORD: $DOCKERHUB_PASSWORD
              IMAGE_NAME: myimage
         steps:
              - setup_remote_docker
              - checkout
-             - run: /deploy
+             - run: USERNAME=$DOCKERHUB_USERNAME PASSWORD=$DOCKERHUB_PASSWORD /deploy
 ```
 
 ## Usage with docker-compose
