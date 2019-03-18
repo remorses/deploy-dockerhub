@@ -11,6 +11,7 @@ jobs:
             USERNAME: $DOCKERHUB_USERNAME
             PASSWORD: $DOCKERHUB_PASSWORD
         steps:
+            - setup_remote_docker
             - checkout
             - run: /deploy
 ```
