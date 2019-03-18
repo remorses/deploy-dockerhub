@@ -6,14 +6,15 @@ version: 2
 jobs:
     deploy:
         docker:
-            - image: xmorse/deploy-dockerhub
+             - image: xmorse/deploy-dockerhub
         environment:
-            USERNAME: $DOCKERHUB_USERNAME
-            PASSWORD: $DOCKERHUB_PASSWORD
+             USERNAME: $DOCKERHUB_USERNAME
+             PASSWORD: $DOCKERHUB_PASSWORD
+             IMAGE_NAME: myimage
         steps:
-            - setup_remote_docker
-            - checkout
-            - run: /deploy
+             - setup_remote_docker
+             - checkout
+             - run: /deploy
 ```
 
 ## Usage with docker-compose
@@ -25,6 +26,7 @@ services:
         environment:
              USERNAME: xxx
              PASSWORD: xxx
+             IMAGE_NAME: myimage
         volumes:
              ./:/src
 ```
