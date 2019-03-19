@@ -8,11 +8,11 @@
 
 version=`cat $TAG_FILE`
 
+docker login -u $USERNAME -p $PASSWORD
+
 docker build -t $USERNAME/$IMAGE_NAME:latest ./
 
 docker tag $USERNAME/$IMAGE_NAME:latest $USERNAME/$IMAGE_NAME:$version
-
-docker login -u $USERNAME -p $PASSWORD
 
 echo "deploying $USERNAME/$IMAGE_NAME:latest"
 docker push $USERNAME/$IMAGE_NAME:latest
