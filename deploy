@@ -8,6 +8,8 @@ set -e
 [ -z $PASSWORD ] && (echo "env var PASSWORD must be set" && exit 1)
 [ -z $IMAGE_NAME ] && (echo "env var IMAGE_NAME must be set" && exit 1)
 
+GIT_SSL_NO_VERIFY=1 git pull origin
+
 version=`cat $TAG_FILE`
 
 docker login -u $USERNAME -p $PASSWORD
